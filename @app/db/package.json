@@ -8,20 +8,22 @@
     "watch": "yarn gm watch",
     "commit": "yarn gm commit",
     "uncommit": "yarn gm uncommit",
+    "rehash": "bash ./migrations/rehash.sh ./migrations/committed/*.sql",
     "reset": "yarn gm reset",
     "dump": "yarn gm migrate && yarn gm reset --shadow --erase && yarn gm migrate --shadow --forceActions",
-    "wipe-if-demo": "./scripts/wipe-if-demo",
-    "test": "cross-env NODE_ENV=test NODE_OPTIONS=\"$NODE_OPTIONS -r @app/config/env\" jest"
+    "test": "cross-env NODE_ENV=test NODE_OPTIONS=\"$NODE_OPTIONS -r @app/config/env\" jest",
+    "zapatos": "cross-env NODE_OPTIONS=\"$NODE_OPTIONS -r @app/config/env\" npx zapatos"
   },
   "dependencies": {
-    "cross-env": "^7.0.3",
-    "graphile-migrate": "^1.0.1"
+    "cross-env": "7.0.3",
+    "graphile-migrate": "1.2.0"
   },
   "devDependencies": {
-    "@types/pg": "^8.6.0",
-    "graphile-worker": "^0.11.0",
-    "jest": "^27.0.1",
-    "lodash": "^4.17.15",
-    "pg": "^8.0.3"
+    "@types/pg": "8.6.0",
+    "graphile-worker": "0.11.3",
+    "jest": "27.0.4",
+    "lodash": "4.17.21",
+    "pg": "8.6.0",
+    "zapatos": "4.0.3"
   }
 }
