@@ -1,12 +1,18 @@
-import { Space } from 'antd';
+import { Tag, Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import React from 'react';
-import { useModel, SelectLang } from 'umi';
+import React, { useState } from 'react';
+import { useModel, useIntl, Link, SelectLang } from 'umi';
 import Avatar from './AvatarDropdown';
-import HeaderSearch from '../HeaderSearch';
+// import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
 
 export type SiderTheme = 'light' | 'dark';
+
+const ENVTagColor = {
+  dev: 'orange',
+  test: 'green',
+  pre: '#87d068',
+};
 
 const GlobalHeaderRight: React.FC = () => {
   const { initialState } = useModel('@@initialState');
@@ -21,12 +27,13 @@ const GlobalHeaderRight: React.FC = () => {
   if ((navTheme === 'dark' && layout === 'top') || layout === 'mix') {
     className = `${styles.right}  ${styles.dark}`;
   }
+
   return (
     <Space className={className}>
-      <HeaderSearch
+      {/* <HeaderSearch
         className={`${styles.action} ${styles.search}`}
-        placeholder="站内搜索"
-        defaultValue="umi ui"
+        placeholder="global search"
+        // defaultValue="search..."
         options={[
           { label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>, value: 'umi ui' },
           {
@@ -45,18 +52,25 @@ const GlobalHeaderRight: React.FC = () => {
         // onSearch={value => {
         //   console.log('input', value);
         // }}
-      />
-      <span
+      /> */}
+      {/* <span
         className={styles.action}
-        onClick={() => {
-          window.open('https://pro.ant.design/docs/getting-started');
-        }}
-      >
-        <QuestionCircleOutlined />
-      </span>
-      <Avatar />
+          onClick={() => {
+            window.open('https://pro.ant.design/docs/getting-started');
+          }}
+        >
+          <QuestionCircleOutlined />
+        </span> */}
+      {/* <NoticeIconView /> */}
+      <Avatar menu />
+      {REACT_APP_ENV && (
+        <span>
+          <Tag color={ENVTagColor[REACT_APP_ENV] || 'yellow'}>{REACT_APP_ENV}</Tag>
+        </span>
+      )}
       <SelectLang className={styles.action} />
     </Space>
   );
 };
+
 export default GlobalHeaderRight;

@@ -1,5 +1,5 @@
 --! Previous: -
---! Hash: sha1:fbd6ffb5be53e7e0bfc63929a52cfc13e698c5f0
+--! Hash: sha1:040dbcf75cd5b674d5dd1d99e085b1545ecb1b92
 
 --! split: 0001-reset.sql
 /*
@@ -345,10 +345,14 @@ comment on function app_public.current_user_id() is
 create table app_public.users (
   id uuid primary key default gen_random_uuid(),
   username citext not null unique check(length(username) >= 2 and length(username) <= 24 and username ~ '^[a-zA-Z]([_]?[a-zA-Z0-9])+$'),
-  name text,
-  avatar_url text check(avatar_url ~ '^https?://[^/]+'),
+  name text NOT NULL,
+  surname text,
+  thumbnail text, -- base64
+  avatar_url text check(avatar_url ~ '^https?://[^/]+'), -- @TODO: should we still do this ?
   is_admin boolean not null default false,
   is_verified boolean not null default false,
+  send_notifications boolean default true,
+  is_active boolean DEFAULT true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -365,7 +369,7 @@ create policy select_all on app_public.users for select using (true);
 create policy update_self on app_public.users for update using (id = app_public.current_user_id());
 grant select on app_public.users to :DATABASE_VISITOR;
 -- NOTE: `insert` is not granted, because we'll handle that separately
-grant update(username, name, avatar_url) on app_public.users to :DATABASE_VISITOR;
+grant update(username, name, surname, avatar_url) on app_public.users to :DATABASE_VISITOR;
 -- NOTE: `delete` is not granted, because we require confirmation via request_account_deletion/confirm_account_deletion
 
 comment on table app_public.users is
@@ -376,7 +380,9 @@ comment on column app_public.users.id is
 comment on column app_public.users.username is
   E'Public-facing username (or ''handle'') of the user.';
 comment on column app_public.users.name is
-  E'Public-facing name (or pseudonym) of the user.';
+  E'Public-facing first name (or pseudonym) of the user.';
+comment on column app_public.users.surname is
+  E'Public-facing last name of the user.';
 comment on column app_public.users.avatar_url is
   E'Optional avatar URL.';
 comment on column app_public.users.is_admin is

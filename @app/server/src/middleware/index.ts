@@ -1,3 +1,4 @@
+import installCors from "./installCors";
 import installCSRFProtection from "./installCSRFProtection";
 import installCypressServerCommand from "./installCypressServerCommand";
 import installDatabasePools from "./installDatabasePools";
@@ -10,10 +11,11 @@ import installPostGraphile from "./installPostGraphile";
 import installSameOrigin from "./installSameOrigin";
 import installSession from "./installSession";
 import installSharedStatic from "./installSharedStatic";
-import installSSR from "./installSSR";
+// import installSSR from "./installSSR";
 import installWorkerUtils from "./installWorkerUtils";
 
 export {
+  installCors,
   installCSRFProtection,
   installCypressServerCommand,
   installDatabasePools,
@@ -26,6 +28,6 @@ export {
   installSameOrigin,
   installSession,
   installSharedStatic,
-  installSSR,
+  // installSSR,
   installWorkerUtils,
 };

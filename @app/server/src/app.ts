@@ -66,8 +66,8 @@ export async function makeApp({
       process.env.TRUST_PROXY === "1"
         ? true
         : process.env.TRUST_PROXY === "cloudflare"
-        ? ["loopback", "linklocal", "uniquelocal", ...cloudflareIps]
-        : process.env.TRUST_PROXY.split(",")
+          ? ["loopback", "linklocal", "uniquelocal", ...cloudflareIps]
+          : process.env.TRUST_PROXY.split(",")
     );
   }
 
@@ -97,12 +97,13 @@ export async function makeApp({
    * express middleware. These helpers may be asynchronous, but they should
    * operate very rapidly to enable quick as possible server startup.
    */
+  await middleware.installCors(app);
   await middleware.installDatabasePools(app);
   await middleware.installWorkerUtils(app);
   await middleware.installHelmet(app);
   await middleware.installSameOrigin(app);
   await middleware.installSession(app);
-  await middleware.installCSRFProtection(app);
+  // await middleware.installCSRFProtection(app); // ! TODO: check if best !
   await middleware.installPassport(app);
   await middleware.installLogging(app);
   if (process.env.FORCE_SSL) {
@@ -114,7 +115,7 @@ export async function makeApp({
     await middleware.installCypressServerCommand(app);
   }
   await middleware.installPostGraphile(app);
-  await middleware.installSSR(app);
+  // await middleware.installSSR(app);
 
   /*
    * Error handling middleware

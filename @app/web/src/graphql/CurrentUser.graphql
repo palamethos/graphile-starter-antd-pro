@@ -1,0 +1,35 @@
+query CurrentUser {
+  currentUser {
+    id
+    ...Shared_User
+  }
+}
+
+fragment Shared_User on User {
+  id
+  name
+  surname
+  username
+  avatarUrl
+  isAdmin
+  isVerified
+  usersRoles {
+    id
+    role
+  }
+  userEmails {
+    email
+  }
+  organizationMembershipsConnection(first: 20) {
+    nodes {
+      id
+      isOwner
+      isBillingContact
+      organization {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

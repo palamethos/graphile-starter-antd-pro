@@ -1,23 +1,47 @@
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { PageLoading } from '@ant-design/pro-layout';
+// import { PageLoading } from '@ant-design/pro-layout';
+import CSSSpin from './components/CSSSpin';
 import { notification } from 'antd';
-import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
+import type { RequestConfig } from 'umi'; // , RunTimeLayoutConfig
 import { history, Link } from 'umi';
-import RightContent from '@/components/RightContent';
-import Footer from '@/components/Footer';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
+// import RightContent from '@/components/RightContent';
+// import Footer from '@/components/Footer';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { withApollo } from '@app/lib';
+import { RecoilRoot } from 'recoil';
+// import defaultSettings from './defaultSettings';
+
+import { CurrentUserDocument } from '@/graphql/CurrentUser.graphql.ts';
+import type {
+  CurrentUserQueryResult,
+  CurrentUserQueryVariables,
+} from '@/graphql/CurrentUser.graphql.ts';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
-/** 获取用户信息比较慢的时候会展示一个 loading */
+const apolloClient: ApolloClient<InMemoryCache> = withApollo(GRAPHQL_URL);
+
+export function rootContainer(container) {
+  return (
+    <ApolloProvider client={apolloClient}>
+      <RecoilRoot>{container}</RecoilRoot>
+    </ApolloProvider>
+  );
+}
+
+/**
+ * When obtaining user information is slow, a loading is displayed
+ */
 export const initialStateConfig = {
-  loading: <PageLoading />,
+  // loading: <PageLoading />,
+  loading: <CSSSpin />,
 };
 
 /**
- * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
+ * @see  https://umijs.org/plugins/plugin-initial-state
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
@@ -26,47 +50,42 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const currentUser = await queryCurrentUser();
-      return currentUser;
+      const query = await apolloClient.query<
+        CurrentUserQueryResult['data'],
+        CurrentUserQueryVariables
+      >({
+        query: CurrentUserDocument,
+      });
+      console.log('current user', query);
+      // TODO: double check ?
+      if (!query.data?.currentUser) {
+        throw new Error('Not logged in...');
+      }
+      return query.data?.currentUser;
     } catch (error) {
+      console.error('fetchUserInfo ERR', error);
       history.push(loginPath);
     }
     return undefined;
   };
-  // 如果是登录页面，不执行
+  // If it is a login page, do not execute
   if (history.location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo();
     return {
       fetchUserInfo,
       currentUser,
-      settings: {},
+      settings: {}, // defaultSettings,
     };
   }
   return {
     fetchUserInfo,
-    settings: {},
+    settings: {}, // defaultSettings,
   };
 }
 
+// TODO: remove as using graphql
 /**
- * 异常处理程序
-    200: '服务器成功返回请求的数据。',
-    201: '新建或修改数据成功。',
-    202: '一个请求已经进入后台排队（异步任务）。',
-    204: '删除数据成功。',
-    400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
-    401: '用户没有权限（令牌、用户名、密码错误）。',
-    403: '用户得到授权，但是访问是被禁止的。',
-    404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
-    405: '请求方法不被允许。',
-    406: '请求的格式不可得。',
-    410: '请求的资源被永久删除，且不会再得到的。',
-    422: '当创建一个对象时，发生一个验证错误。',
-    500: '服务器发生错误，请检查服务器。',
-    502: '网关错误。',
-    503: '服务不可用，服务器暂时过载或维护。',
-    504: '网关超时。',
- //-----English
+ * Exception handler
     200: The server successfully returned the requested data. ',
     201: New or modified data is successful. ',
     202: A request has entered the background queue (asynchronous task). ',
@@ -84,7 +103,7 @@ export async function getInitialState(): Promise<{
     502: Gateway error. ',
     503: The service is unavailable. ',
     504: The gateway timed out. ',
- * @see https://beta-pro.ant.design/docs/request-cn
+ * @see https://beta-pro.ant.design/docs/request
  */
 export const request: RequestConfig = {
   errorHandler: (error: any) => {
@@ -92,45 +111,45 @@ export const request: RequestConfig = {
 
     if (!response) {
       notification.error({
-        description: '您的网络发生异常，无法连接服务器',
-        message: '网络异常',
+        description: 'Your network is abnormal and cannot connect to the server',
+        message: 'network anomaly',
       });
     }
     throw error;
   },
 };
 
-// ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = ({ initialState }) => {
-  return {
-    rightContentRender: () => <RightContent />,
-    disableContentMargin: false,
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
-    footerRender: () => <Footer />,
-    onPageChange: () => {
-      const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
-      }
-    },
-    links: isDev
-      ? [
-          <Link to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>openAPI 文档</span>
-          </Link>,
-          <Link to="/~docs">
-            <BookOutlined />
-            <span>业务组件文档</span>
-          </Link>,
-        ]
-      : [],
-    menuHeaderRender: undefined,
-    // 自定义 403 页面
-    // unAccessible: <div>unAccessible</div>,
-    ...initialState?.settings,
-  };
-};
+// ? TODO: double check might be performance issue !
+// export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+//   return {
+//     rightContentRender: () => <RightContent />,
+//     disableContentMargin: false,
+//     waterMarkProps: {
+//       content: initialState?.currentUser?.name,
+//     },
+//     footerRender: () => <Footer />,
+//     onPageChange: () => {
+//       const { location } = history;
+//       // If you are not logged in, redirect to login
+//       if (!initialState?.currentUser && location.pathname !== loginPath) {
+//         history.push(loginPath);
+//       }
+//     },
+//     links: isDev
+//       ? [
+//           <Link to="/umi/plugin/openapi" target="_blank">
+//             <LinkOutlined />
+//             <span>openAPI 文档</span>
+//           </Link>,
+//           <Link to="/~docs">
+//             <BookOutlined />
+//             <span>业务组件文档</span>
+//           </Link>,
+//         ]
+//       : [],
+//     menuHeaderRender: undefined,
+//     // Custom 403 page
+//     // unAccessible: <div>unAccessible</div>,
+//     ...initialState?.settings,
+//   };
+// };

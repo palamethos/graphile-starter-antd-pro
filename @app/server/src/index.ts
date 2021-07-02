@@ -19,15 +19,15 @@ async function main() {
   httpServer.addListener("request", app);
 
   // And finally, we open the listen port
-  const PORT = parseInt(process.env.PORT || "", 10) || 3000;
+  const PORT = parseInt(process.env.SERVER_PORT || "", 10) || 3000;
   httpServer.listen(PORT, () => {
     const address = httpServer.address();
     const actualPort: string =
       typeof address === "string"
         ? address
         : address && address.port
-        ? String(address.port)
-        : String(PORT);
+          ? String(address.port)
+          : String(PORT);
     console.log();
     console.log(
       chalk.green(

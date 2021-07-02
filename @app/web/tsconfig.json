@@ -23,6 +23,11 @@
       "@@/*": ["./src/.umi/*"]
     }
   },
+  "references": [
+    // { "path": "@app/config" },
+    { "path": "../@app/lib" },
+    { "path": "../@app/graphql" }
+  ],
   "include": [
     "mock/**/*",
     "src/**/*",

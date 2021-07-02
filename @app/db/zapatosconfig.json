@@ -1,0 +1,12 @@
+{
+    "db": {
+      "connectionString": "{{DATABASE_URL}}"
+    },
+    "outDir": "./types",
+    "schemas": {
+      "app_public": {
+        "include": "*",
+        "exclude": []
+      }
+    }
+  }

@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { Express, RequestHandler } from "express";
 
 import { getWebsocketMiddlewares } from "../app";
@@ -15,8 +16,15 @@ declare module "express-serve-static-core" {
 
 export default (app: Express) => {
   const middleware: RequestHandler = (req, res, next) => {
+    // TODO: refactor/check if still best with same_origin
     req.isSameOrigin =
-      !req.headers.origin || req.headers.origin === process.env.ROOT_URL;
+      !req.headers.origin ||
+      req.headers.origin === process.env.ROOT_URL ||
+      req.headers.origin.startsWith(process.env.SAME_ORIGIN_URL || "_");
+
+    if (!req.isSameOrigin) {
+      console.warn("not same origin", chalk.yellow(req.headers.origin));
+    }
     next();
   };
   app.use(middleware);

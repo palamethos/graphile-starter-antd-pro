@@ -1,15 +1,21 @@
 import { Button, Result } from 'antd';
 import React from 'react';
-import { history } from 'umi';
+import { history, useIntl } from 'umi';
 
 const NoFoundPage: React.FC = () => (
   <Result
     status="404"
     title="404"
-    subTitle="Sorry, the page you visited does not exist."
+    style={{
+      background: 'none',
+    }}
+    subTitle={useIntl().formatMessage({
+      id: 'app.exception.description.404',
+      defaultMessage: 'Sorry, the page you visited does not exist.',
+    })}
     extra={
       <Button type="primary" onClick={() => history.push('/')}>
-        Back Home
+        {useIntl().formatMessage({ id: 'app.exception.back', defaultMessage: 'Back Home' })}
       </Button>
     }
   />

@@ -1,7 +1,11 @@
 import component from './en-US/component';
 import globalHeader from './en-US/globalHeader';
 import menu from './en-US/menu';
-import pages from './en-US/pages';
+// pages
+import admin from './en-US/pages/admin';
+import login from './en-US/pages/login';
+import welcome from './en-US/pages/welcome';
+//
 import pwa from './en-US/pwa';
 import settingDrawer from './en-US/settingDrawer';
 import settings from './en-US/settings';
@@ -21,5 +25,8 @@ export default {
   ...settings,
   ...pwa,
   ...component,
-  ...pages,
+  // pages
+  ...admin,
+  ...login,
+  ...welcome,
 };

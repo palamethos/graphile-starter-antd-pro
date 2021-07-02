@@ -7,6 +7,14 @@
     "esbenp.prettier-vscode", // Prettier
     "apollographql.vscode-apollo", // GraphQL support
     "msjsdiag.debugger-for-chrome", // Chrome debugger integration
-    "ms-vscode-remote.vscode-remote-extensionpack" // OPTIONAL: develop inside of Docker containers
+    "ms-vscode-remote.vscode-remote-extensionpack", // OPTIONAL: develop inside of Docker containers
+    // funkyremi.vscode-google-translate
+    // ms-azuretools.vscode-docker
+    // vscode.docker
+    "naumovs.color-highlight",
+    "wmaurer.change-case",
+    "aaron-bond.better-comments",
+    "mikestead.dotenv",
+    "wayou.vscode-todo-highlight"
   ]
 }

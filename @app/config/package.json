@@ -9,10 +9,11 @@
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=\"$NODE_OPTIONS -r @app/config/env\" jest"
   },
   "dependencies": {
-    "dotenv": "^10.0.0"
+    "dotenv": "10.0.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2",
-    "jest": "^27.0.1"
+    "@types/node": "15.12.5",
+    "cross-env": "7.0.3",
+    "jest": "27.0.4"
   }
 }

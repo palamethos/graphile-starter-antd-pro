@@ -1,0 +1,131 @@
+@import '~antd/es/style/themes/default.less';
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid @primary-color;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.wrapper {
+  // margin:auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  // min-height: 100vh;
+  // background: #c5f9e2;
+}
+
+// .container {
+//   position: absolute;
+//   animation: rotate 3s linear infinite;
+// }
+// .container:last-of-type {
+//   // z-index: -1;
+//   margin: 1%;
+// }
+
+// .triangle {
+//   position: relative;
+//   text-align: left;
+//   transform-origin: 33.33% 66.66%;
+// }
+// .triangle:before,
+// .triangle:after {
+//   content: '';
+//   position: absolute;
+//   background: inherit;
+// }
+// .triangle,
+// .triangle:before,
+// .triangle:after {
+//   width: 1em;
+//   height: 1em;
+//   border-top-right-radius: 20%;
+// }
+// .triangle:before {
+//   transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+// }
+// .triangle:after {
+//   transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+// }
+// .triangle:first-of-type {
+//   // background: #ff1668;
+//   background: #203edc;
+//   transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866) translate(143.33%, 110%);
+//   animation: first 3s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+// }
+// .triangle:last-of-type {
+//   // background: #1626f5;
+//   background: #47bcee;
+//   transform: rotate(0deg) skewX(-30deg) scale(1, 0.866) translate(-100%, -4%);
+//   animation: last 3s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+// }
+// .triangle.shadow,
+// .triangle.shadow:before,
+// .triangle.shadow:after {
+//   // background: #a0f5d0;
+//   backface-visibility: hidden;
+//   perspective: 1000;
+//   filter: blur(0.5em);
+// }
+
+// @keyframes rotate {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(-360deg);
+//   }
+// }
+// @keyframes first {
+//   0% {
+//     transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866) translate(143.33%, 110%);
+//   }
+//   33% {
+//     transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866) translate(-76.67%, -120%);
+//   }
+//   66% {
+//     transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866) translate(-76.67%, 112%);
+//   }
+// }
+// @keyframes last {
+//   0% {
+//     transform: rotate(0deg) skewX(-30deg) scale(1, 0.866) translate(-100%, -4%);
+//   }
+//   33% {
+//     transform: rotate(0deg) skewX(-30deg) scale(1, 0.866) translate(134%, -4%);
+//   }
+//   66% {
+//     transform: rotate(0deg) skewX(-30deg) scale(1, 0.866) translate(-89%, -214%);
+//   }
+// }

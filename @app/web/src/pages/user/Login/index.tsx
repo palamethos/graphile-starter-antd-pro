@@ -11,8 +11,10 @@ import React, { useState } from 'react';
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
-import { login } from '@/services/ant-design-pro/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+// import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { useApolloClient } from '@apollo/client';
+import { LoginDocument } from '@/graphql/Login.graphql.ts';
+import type { LoginMutationResult, LoginMutationVariables } from '@/graphql/Login.graphql.ts';
 
 import styles from './index.less';
 
@@ -29,7 +31,9 @@ const LoginMessage: React.FC<{
   />
 );
 
-/** 此方法会跳转到 redirect 参数所在的位置 */
+/**
+ * This method will jump to the location of the redirect parameter
+ */
 const goto = () => {
   if (!history) return;
   setTimeout(() => {
@@ -44,6 +48,7 @@ const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
+  const apolloClient = useApolloClient();
 
   const intl = useIntl();
 
@@ -60,27 +65,29 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
     try {
-      // 登录
-      const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
-        const defaultloginSuccessMessage = intl.formatMessage({
-          id: 'pages.login.success',
-          defaultMessage: '登录成功！',
-        });
-        message.success(defaultloginSuccessMessage);
-        await fetchUserInfo();
+      // log in
+      const loginResult = await apolloClient.mutate<
+        LoginMutationResult['data'],
+        LoginMutationVariables
+      >({
+        mutation: LoginDocument,
+        variables: { ...values }, // , type
+      });
+      if (!loginResult.errors?.length) {
+        message.success('login successful!');
+        const fetchedUser = await fetchUserInfo();
+        console.info('fetchedUser', fetchedUser);
         goto();
         return;
+      } else {
+        console.error('loginResult.errors', loginResult.errors); // TODO: better error
+        message.error(loginResult.errors.map((e) => e.message).join('; '));
       }
-      // 如果失败去设置用户错误信息
-      setUserLoginState(msg);
+      // Set user error message if it fails
+      setUserLoginState({ status: 'error' });
     } catch (error) {
-      const defaultloginFailureMessage = intl.formatMessage({
-        id: 'pages.login.failure',
-        defaultMessage: '登录失败，请重试！',
-      });
-
-      message.error(defaultloginFailureMessage);
+      console.error('error', error); // TODO: better error
+      message.error(error.message);
     }
     setSubmitting(false);
   };
@@ -88,20 +95,16 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.lang} data-lang>
-        {SelectLang && <SelectLang />}
-      </div>
+      <div className={styles.lang}>{SelectLang && <SelectLang />}</div>
       <div className={styles.content}>
         <div className={styles.top}>
           <div className={styles.header}>
             <Link to="/">
               <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>Ant Design</span>
+              <span className={styles.title}>GS-ANTD-PRO</span>
             </Link>
           </div>
-          <div className={styles.desc}>
-            {intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
-          </div>
+          <div className={styles.desc}>Description ... T&Cs</div>
         </div>
 
         <div className={styles.main}>
@@ -113,7 +116,7 @@ const Login: React.FC = () => {
               searchConfig: {
                 submitText: intl.formatMessage({
                   id: 'pages.login.submit',
-                  defaultMessage: '登录',
+                  defaultMessage: 'log in',
                 }),
               },
               render: (_, dom) => dom.pop(),
@@ -134,23 +137,23 @@ const Login: React.FC = () => {
                 key="account"
                 tab={intl.formatMessage({
                   id: 'pages.login.accountLogin.tab',
-                  defaultMessage: '账户密码登录',
+                  defaultMessage: 'Account password login',
                 })}
               />
-              <Tabs.TabPane
+              {/* <Tabs.TabPane
                 key="mobile"
                 tab={intl.formatMessage({
                   id: 'pages.login.phoneLogin.tab',
-                  defaultMessage: '手机号登录',
+                  defaultMessage: 'Mobile number login',
                 })}
-              />
+              /> */}
             </Tabs>
 
             {status === 'error' && loginType === 'account' && (
               <LoginMessage
                 content={intl.formatMessage({
                   id: 'pages.login.accountLogin.errorMessage',
-                  defaultMessage: '账户或密码错误（admin/ant.design)',
+                  defaultMessage: 'Incorrect account or password',
                 })}
               />
             )}
@@ -164,7 +167,7 @@ const Login: React.FC = () => {
                   }}
                   placeholder={intl.formatMessage({
                     id: 'pages.login.username.placeholder',
-                    defaultMessage: '用户名: admin or user',
+                    defaultMessage: 'Username',
                   })}
                   rules={[
                     {
@@ -172,7 +175,7 @@ const Login: React.FC = () => {
                       message: (
                         <FormattedMessage
                           id="pages.login.username.required"
-                          defaultMessage="请输入用户名!"
+                          defaultMessage="please enter user name!"
                         />
                       ),
                     },
@@ -186,7 +189,7 @@ const Login: React.FC = () => {
                   }}
                   placeholder={intl.formatMessage({
                     id: 'pages.login.password.placeholder',
-                    defaultMessage: '密码: ant.design',
+                    defaultMessage: 'Password',
                   })}
                   rules={[
                     {
@@ -194,7 +197,7 @@ const Login: React.FC = () => {
                       message: (
                         <FormattedMessage
                           id="pages.login.password.required"
-                          defaultMessage="请输入密码！"
+                          defaultMessage="Please enter the password!"
                         />
                       ),
                     },
@@ -203,8 +206,8 @@ const Login: React.FC = () => {
               </>
             )}
 
-            {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
-            {type === 'mobile' && (
+            {/* {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />} */}
+            {/* {type === 'mobile' && (
               <>
                 <ProFormText
                   fieldProps={{
@@ -284,30 +287,33 @@ const Login: React.FC = () => {
                   }}
                 />
               </>
-            )}
+            )} */}
             <div
               style={{
                 marginBottom: 24,
               }}
             >
               <ProFormCheckbox noStyle name="autoLogin">
-                <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
+                <FormattedMessage id="pages.login.rememberMe" defaultMessage="Remember me" />
               </ProFormCheckbox>
               <a
                 style={{
                   float: 'right',
                 }}
               >
-                <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
+                <FormattedMessage
+                  id="pages.login.forgotPassword"
+                  defaultMessage="Forgot password"
+                />
               </a>
             </div>
           </ProForm>
-          <Space className={styles.other}>
+          {/* <Space className={styles.other}>
             <FormattedMessage id="pages.login.loginWith" defaultMessage="其他登录方式" />
             <AlipayCircleOutlined className={styles.icon} />
             <TaobaoCircleOutlined className={styles.icon} />
             <WeiboCircleOutlined className={styles.icon} />
-          </Space>
+          </Space> */}
         </div>
       </div>
       <Footer />
