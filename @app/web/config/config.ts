@@ -32,9 +32,9 @@ export default defineConfig({
     // default zh-CN
     default: 'en-US',
     antd: true,
-    // title: false,
+    title: false, // ? default/true - but gives error
     // default true, when it is true, will use `navigator.language` overwrite default
-    baseNavigator: true, // false,
+    baseNavigator: false, // ? default/true - but gives error
   },
   dynamicImport: {
     loading: '@/components/CSSSpin/index', // '@ant-design/pro-layout/es/PageLoading'
@@ -62,6 +62,7 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
+  // mfsu: {},
   // Fast Refresh hot update
   fastRefresh: {},
   // chainWebpack: webpackPlugin,

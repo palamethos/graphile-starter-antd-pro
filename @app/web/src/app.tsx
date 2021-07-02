@@ -13,11 +13,11 @@ import { withApollo } from '@app/lib';
 import { RecoilRoot } from 'recoil';
 // import defaultSettings from './defaultSettings';
 
-import { CurrentUserDocument } from '@/graphql/CurrentUser.graphql.ts';
+import { CurrentUserDocument } from '@/graphql/CurrentUser.graphql.hook';
 import type {
   CurrentUserQueryResult,
   CurrentUserQueryVariables,
-} from '@/graphql/CurrentUser.graphql.ts';
+} from '@/graphql/CurrentUser.graphql.hook';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';

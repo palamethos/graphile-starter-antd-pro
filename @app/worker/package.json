@@ -24,12 +24,12 @@
     "html-to-text": "7.1.1",
     "lodash": "4.17.21",
     "mjml": "4.9.3",
-    "nodemailer": "6.6.1",
-    "tslib": "2.2.0",
-    "zapatos": "4.0.3"
+    "nodemailer": "6.6.2",
+    "tslib": "2.3.0",
+    "zapatos": "5.0.0"
   },
   "devDependencies": {
-    "jest": "27.0.4",
+    "jest": "27.0.6",
     "mkdirp": "1.0.4"
   }
 }

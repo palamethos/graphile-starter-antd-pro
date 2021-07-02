@@ -4,7 +4,7 @@
 // ! TODO: refactor
 
 declare namespace API {
-  import type { Shared_UserFragment } from "@/graphql/CurrentUser.graphql";
+  import type { Shared_UserFragment } from "@/graphql/CurrentUser.graphql.hook";
 
   export type CurrentUser = Shared_UserFragment & {};
   // type CurrentUser = {

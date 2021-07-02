@@ -13,8 +13,8 @@ import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from '
 import Footer from '@/components/Footer';
 // import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import { useApolloClient } from '@apollo/client';
-import { LoginDocument } from '@/graphql/Login.graphql.ts';
-import type { LoginMutationResult, LoginMutationVariables } from '@/graphql/Login.graphql.ts';
+import { LoginDocument } from '@/graphql/Login.graphql.hook';
+import type { LoginMutationResult, LoginMutationVariables } from '@/graphql/Login.graphql.hook';
 
 import styles from './index.less';
 

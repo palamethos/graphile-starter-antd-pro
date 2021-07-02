@@ -20,7 +20,7 @@ generates:
   ./: # src/:
     preset: near-operation-file
     presetConfig:
-      extension: .graphql.ts
+      extension: .graphql.hook.ts
       baseTypesPath: index.ts
     plugins:
       - add:

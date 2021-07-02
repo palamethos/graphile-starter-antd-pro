@@ -1,5 +1,5 @@
 import { UserRoles } from '@app/graphql';
-import { Shared_UserFragment } from '@/graphql/CurrentUser.graphql';
+import { Shared_UserFragment } from '@/graphql/CurrentUser.graphql.hook';
 
 export default function access(initialState: { currentUser?: API.CurrentUser }) {
   const { currentUser } = initialState || {};

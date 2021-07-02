@@ -1,4 +1,4 @@
-import { Shared_UserFragment } from '@/graphql/CurrentUser.graphql.ts';
+import { Shared_UserFragment } from '@/graphql/CurrentUser.graphql.hook';
 import { atom } from 'recoil';
 
 // TODO: complete
