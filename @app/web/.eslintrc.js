@@ -1,7 +1,11 @@
+// TOOD: refactor
 module.exports = {
+  extends: [require.resolve('@umijs/fabric/dist/eslint'), 'plugin:react-hooks/recommended'], //  ,"react-hooks"
+  // extends: [`${__dirname}/../.eslintrc.js`, require.resolve('@umijs/fabric/dist/eslint')],
   root: true,
-  extends: [require.resolve('@umijs/fabric/dist/eslint')], //  ,"react-hooks", "plugin:react-hooks/recommended"
-  // extends: `${__dirname}/../.eslintrc.js`,
+  parserOptions: {
+    project: './**/tsconfig.json',
+  },
   // in antd-design-pro
   globals: {
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: true,
@@ -11,6 +15,7 @@ module.exports = {
   },
   plugins: ['react-hooks'],
   rules: {
+    // your rules
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
   },
