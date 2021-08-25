@@ -19,11 +19,11 @@
     "graphile-migrate": "1.2.0"
   },
   "devDependencies": {
-    "@types/pg": "8.6.0",
+    "@types/pg": "8.6.1",
     "graphile-worker": "0.11.3",
     "jest": "27.0.6",
     "lodash": "4.17.21",
-    "pg": "8.6.0",
+    "pg": "8.7.1",
     "zapatos": "5.0.0"
   }
 }

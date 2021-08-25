@@ -9,23 +9,7 @@ export type MakeEmailPrimaryMutationVariables = Types.Exact<{
 }>;
 
 
-export type MakeEmailPrimaryMutation = (
-  { __typename?: 'Mutation' }
-  & { makeEmailPrimary: Types.Maybe<(
-    { __typename?: 'MakeEmailPrimaryPayload' }
-    & { user: Types.Maybe<(
-      { __typename?: 'User' }
-      & Pick<Types.User, 'id'>
-      & { userEmailsConnection: (
-        { __typename?: 'UserEmailsConnection' }
-        & { nodes: Array<(
-          { __typename?: 'UserEmail' }
-          & Pick<Types.UserEmail, 'id' | 'isPrimary'>
-        )> }
-      ) }
-    )> }
-  )> }
-);
+export type MakeEmailPrimaryMutation = { __typename?: 'Mutation', makeEmailPrimary: Types.Maybe<{ __typename?: 'MakeEmailPrimaryPayload', user: Types.Maybe<{ __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, isPrimary: boolean }> } }> }> };
 
 
 export const MakeEmailPrimaryDocument = gql`

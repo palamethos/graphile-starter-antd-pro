@@ -9,13 +9,7 @@ export type ConfirmAccountDeletionMutationVariables = Types.Exact<{
 }>;
 
 
-export type ConfirmAccountDeletionMutation = (
-  { __typename?: 'Mutation' }
-  & { confirmAccountDeletion: Types.Maybe<(
-    { __typename?: 'ConfirmAccountDeletionPayload' }
-    & Pick<Types.ConfirmAccountDeletionPayload, 'success'>
-  )> }
-);
+export type ConfirmAccountDeletionMutation = { __typename?: 'Mutation', confirmAccountDeletion: Types.Maybe<{ __typename?: 'ConfirmAccountDeletionPayload', success: Types.Maybe<boolean> }> };
 
 
 export const ConfirmAccountDeletionDocument = gql`

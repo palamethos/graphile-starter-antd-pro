@@ -9,13 +9,7 @@ export type OrganizationBySlugQueryVariables = Types.Exact<{
 }>;
 
 
-export type OrganizationBySlugQuery = (
-  { __typename?: 'Query' }
-  & { organizationBySlug: Types.Maybe<(
-    { __typename?: 'Organization' }
-    & Pick<Types.Organization, 'id' | 'name' | 'slug'>
-  )> }
-);
+export type OrganizationBySlugQuery = { __typename?: 'Query', organizationBySlug: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }> };
 
 
 export const OrganizationBySlugDocument = gql`

@@ -10,16 +10,7 @@ export type TransferOrganizationBillingContactMutationVariables = Types.Exact<{
 }>;
 
 
-export type TransferOrganizationBillingContactMutation = (
-  { __typename?: 'Mutation' }
-  & { transferOrganizationBillingContact: Types.Maybe<(
-    { __typename?: 'TransferOrganizationBillingContactPayload' }
-    & { organization: Types.Maybe<(
-      { __typename?: 'Organization' }
-      & Pick<Types.Organization, 'id' | 'currentUserIsBillingContact'>
-    )> }
-  )> }
-);
+export type TransferOrganizationBillingContactMutation = { __typename?: 'Mutation', transferOrganizationBillingContact: Types.Maybe<{ __typename?: 'TransferOrganizationBillingContactPayload', organization: Types.Maybe<{ __typename?: 'Organization', id: any, currentUserIsBillingContact: Types.Maybe<boolean> }> }> };
 
 
 export const TransferOrganizationBillingContactDocument = gql`

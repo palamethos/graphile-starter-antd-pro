@@ -9,20 +9,7 @@ export type UnlinkUserAuthenticationMutationVariables = Types.Exact<{
 }>;
 
 
-export type UnlinkUserAuthenticationMutation = (
-  { __typename?: 'Mutation' }
-  & { deleteUserAuthentication: Types.Maybe<(
-    { __typename?: 'DeleteUserAuthenticationPayload' }
-    & { user: Types.Maybe<(
-      { __typename?: 'User' }
-      & Pick<Types.User, 'id'>
-      & { userAuthentications: Array<(
-        { __typename?: 'UserAuthentication' }
-        & Pick<Types.UserAuthentication, 'id' | 'identifier' | 'service' | 'createdAt'>
-      )> }
-    )> }
-  )> }
-);
+export type UnlinkUserAuthenticationMutation = { __typename?: 'Mutation', deleteUserAuthentication: Types.Maybe<{ __typename?: 'DeleteUserAuthenticationPayload', user: Types.Maybe<{ __typename?: 'User', id: any, userAuthentications: Array<{ __typename?: 'UserAuthentication', id: any, identifier: string, service: string, createdAt: string }> }> }> };
 
 
 export const UnlinkUserAuthenticationDocument = gql`

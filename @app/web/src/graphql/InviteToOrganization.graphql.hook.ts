@@ -11,13 +11,7 @@ export type InviteToOrganizationMutationVariables = Types.Exact<{
 }>;
 
 
-export type InviteToOrganizationMutation = (
-  { __typename?: 'Mutation' }
-  & { inviteToOrganization: Types.Maybe<(
-    { __typename?: 'InviteToOrganizationPayload' }
-    & Pick<Types.InviteToOrganizationPayload, 'clientMutationId'>
-  )> }
-);
+export type InviteToOrganizationMutation = { __typename?: 'Mutation', inviteToOrganization: Types.Maybe<{ __typename?: 'InviteToOrganizationPayload', clientMutationId: Types.Maybe<string> }> };
 
 
 export const InviteToOrganizationDocument = gql`

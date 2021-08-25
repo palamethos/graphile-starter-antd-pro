@@ -10,13 +10,7 @@ export type RemoveFromOrganizationMutationVariables = Types.Exact<{
 }>;
 
 
-export type RemoveFromOrganizationMutation = (
-  { __typename?: 'Mutation' }
-  & { removeFromOrganization: Types.Maybe<(
-    { __typename?: 'RemoveFromOrganizationPayload' }
-    & Pick<Types.RemoveFromOrganizationPayload, 'clientMutationId'>
-  )> }
-);
+export type RemoveFromOrganizationMutation = { __typename?: 'Mutation', removeFromOrganization: Types.Maybe<{ __typename?: 'RemoveFromOrganizationPayload', clientMutationId: Types.Maybe<string> }> };
 
 
 export const RemoveFromOrganizationDocument = gql`

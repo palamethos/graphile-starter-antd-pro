@@ -7,13 +7,7 @@ const defaultOptions =  {}
 export type LogoutMutationVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type LogoutMutation = (
-  { __typename?: 'Mutation' }
-  & { logout: Types.Maybe<(
-    { __typename?: 'LogoutPayload' }
-    & Pick<Types.LogoutPayload, 'success'>
-  )> }
-);
+export type LogoutMutation = { __typename?: 'Mutation', logout: Types.Maybe<{ __typename?: 'LogoutPayload', success: Types.Maybe<boolean> }> };
 
 
 export const LogoutDocument = gql`

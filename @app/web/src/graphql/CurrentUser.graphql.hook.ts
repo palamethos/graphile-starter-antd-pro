@@ -7,36 +7,9 @@ const defaultOptions =  {}
 export type CurrentUserQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserQuery = (
-  { __typename?: 'Query' }
-  & { currentUser: Types.Maybe<(
-    { __typename?: 'User' }
-    & Pick<Types.User, 'id'>
-    & Shared_UserFragment
-  )> }
-);
+export type CurrentUserQuery = { __typename?: 'Query', currentUser: Types.Maybe<{ __typename?: 'User', id: any, name: string, surname: Types.Maybe<string>, username: string, avatarUrl: Types.Maybe<string>, isAdmin: boolean, isVerified: boolean, usersRoles: Array<{ __typename?: 'UsersRole', id: any, role: Types.UserRoles }>, userEmails: Array<{ __typename?: 'UserEmail', email: string }>, organizationMembershipsConnection: { __typename?: 'OrganizationMembershipsConnection', nodes: Array<{ __typename?: 'OrganizationMembership', id: any, isOwner: boolean, isBillingContact: boolean, organization: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }> }> } }> };
 
-export type Shared_UserFragment = (
-  { __typename?: 'User' }
-  & Pick<Types.User, 'id' | 'name' | 'surname' | 'username' | 'avatarUrl' | 'isAdmin' | 'isVerified'>
-  & { usersRoles: Array<(
-    { __typename?: 'UsersRole' }
-    & Pick<Types.UsersRole, 'id' | 'role'>
-  )>, userEmails: Array<(
-    { __typename?: 'UserEmail' }
-    & Pick<Types.UserEmail, 'email'>
-  )>, organizationMembershipsConnection: (
-    { __typename?: 'OrganizationMembershipsConnection' }
-    & { nodes: Array<(
-      { __typename?: 'OrganizationMembership' }
-      & Pick<Types.OrganizationMembership, 'id' | 'isOwner' | 'isBillingContact'>
-      & { organization: Types.Maybe<(
-        { __typename?: 'Organization' }
-        & Pick<Types.Organization, 'id' | 'name' | 'slug'>
-      )> }
-    )> }
-  ) }
-);
+export type Shared_UserFragment = { __typename?: 'User', id: any, name: string, surname: Types.Maybe<string>, username: string, avatarUrl: Types.Maybe<string>, isAdmin: boolean, isVerified: boolean, usersRoles: Array<{ __typename?: 'UsersRole', id: any, role: Types.UserRoles }>, userEmails: Array<{ __typename?: 'UserEmail', email: string }>, organizationMembershipsConnection: { __typename?: 'OrganizationMembershipsConnection', nodes: Array<{ __typename?: 'OrganizationMembership', id: any, isOwner: boolean, isBillingContact: boolean, organization: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }> }> } };
 
 export const Shared_UserFragmentDoc = gql`
     fragment Shared_User on User {

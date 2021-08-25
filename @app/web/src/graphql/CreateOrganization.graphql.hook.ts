@@ -4,10 +4,7 @@ import * as Types from '../../../graphql/index';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
-export type CreatedOrganizationFragment = (
-  { __typename?: 'Organization' }
-  & Pick<Types.Organization, 'id' | 'name' | 'slug'>
-);
+export type CreatedOrganizationFragment = { __typename?: 'Organization', id: any, name: string, slug: string };
 
 export type CreateOrganizationMutationVariables = Types.Exact<{
   name: Types.Scalars['String'];
@@ -15,24 +12,7 @@ export type CreateOrganizationMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateOrganizationMutation = (
-  { __typename?: 'Mutation' }
-  & { createOrganization: Types.Maybe<(
-    { __typename?: 'CreateOrganizationPayload' }
-    & { organization: Types.Maybe<(
-      { __typename?: 'Organization' }
-      & Pick<Types.Organization, 'id'>
-      & CreatedOrganizationFragment
-    )>, query: Types.Maybe<(
-      { __typename?: 'Query' }
-      & { organizationBySlug: Types.Maybe<(
-        { __typename?: 'Organization' }
-        & Pick<Types.Organization, 'id'>
-        & CreatedOrganizationFragment
-      )> }
-    )> }
-  )> }
-);
+export type CreateOrganizationMutation = { __typename?: 'Mutation', createOrganization: Types.Maybe<{ __typename?: 'CreateOrganizationPayload', organization: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }>, query: Types.Maybe<{ __typename?: 'Query', organizationBySlug: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }> }> }> };
 
 export const CreatedOrganizationFragmentDoc = gql`
     fragment CreatedOrganization on Organization {

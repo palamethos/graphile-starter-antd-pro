@@ -10,16 +10,7 @@ export type LoginMutationVariables = Types.Exact<{
 }>;
 
 
-export type LoginMutation = (
-  { __typename?: 'Mutation' }
-  & { login: Types.Maybe<(
-    { __typename?: 'LoginPayload' }
-    & { user: (
-      { __typename?: 'User' }
-      & Pick<Types.User, 'id' | 'username' | 'name'>
-    ) }
-  )> }
-);
+export type LoginMutation = { __typename?: 'Mutation', login: Types.Maybe<{ __typename?: 'LoginPayload', user: { __typename?: 'User', id: any, username: string, name: string } }> };
 
 
 export const LoginDocument = gql`

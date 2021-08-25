@@ -11,13 +11,7 @@ export type ResetPasswordMutationVariables = Types.Exact<{
 }>;
 
 
-export type ResetPasswordMutation = (
-  { __typename?: 'Mutation' }
-  & { resetPassword: Types.Maybe<(
-    { __typename?: 'ResetPasswordPayload' }
-    & Pick<Types.ResetPasswordPayload, 'success'>
-  )> }
-);
+export type ResetPasswordMutation = { __typename?: 'Mutation', resetPassword: Types.Maybe<{ __typename?: 'ResetPasswordPayload', success: Types.Maybe<boolean> }> };
 
 
 export const ResetPasswordDocument = gql`

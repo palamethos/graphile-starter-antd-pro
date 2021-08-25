@@ -10,13 +10,7 @@ export type InvitationDetailQueryVariables = Types.Exact<{
 }>;
 
 
-export type InvitationDetailQuery = (
-  { __typename?: 'Query' }
-  & { organizationForInvitation: Types.Maybe<(
-    { __typename?: 'Organization' }
-    & Pick<Types.Organization, 'id' | 'name' | 'slug'>
-  )> }
-);
+export type InvitationDetailQuery = { __typename?: 'Query', organizationForInvitation: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }> };
 
 
 export const InvitationDetailDocument = gql`

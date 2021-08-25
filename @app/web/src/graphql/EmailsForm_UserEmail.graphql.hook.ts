@@ -2,10 +2,7 @@
 import * as Types from '../../../graphql/index';
 
 import { gql } from '@apollo/client';
-export type EmailsForm_UserEmailFragment = (
-  { __typename?: 'UserEmail' }
-  & Pick<Types.UserEmail, 'id' | 'email' | 'isVerified' | 'isPrimary' | 'createdAt'>
-);
+export type EmailsForm_UserEmailFragment = { __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string };
 
 export const EmailsForm_UserEmailFragmentDoc = gql`
     fragment EmailsForm_UserEmail on UserEmail {

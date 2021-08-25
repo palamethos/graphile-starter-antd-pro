@@ -7,17 +7,7 @@ const defaultOptions =  {}
 export type CurrentUserUpdatedSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserUpdatedSubscription = (
-  { __typename?: 'Subscription' }
-  & { currentUserUpdated: Types.Maybe<(
-    { __typename?: 'UserSubscriptionPayload' }
-    & Pick<Types.UserSubscriptionPayload, 'event'>
-    & { user: Types.Maybe<(
-      { __typename?: 'User' }
-      & Pick<Types.User, 'id' | 'username' | 'name' | 'avatarUrl' | 'isAdmin' | 'isVerified'>
-    )> }
-  )> }
-);
+export type CurrentUserUpdatedSubscription = { __typename?: 'Subscription', currentUserUpdated: Types.Maybe<{ __typename?: 'UserSubscriptionPayload', event: Types.Maybe<string>, user: Types.Maybe<{ __typename?: 'User', id: any, username: string, name: string, avatarUrl: Types.Maybe<string>, isAdmin: boolean, isVerified: boolean }> }> };
 
 
 export const CurrentUserUpdatedDocument = gql`

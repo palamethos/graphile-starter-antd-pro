@@ -10,13 +10,7 @@ export type AcceptOrganizationInviteMutationVariables = Types.Exact<{
 }>;
 
 
-export type AcceptOrganizationInviteMutation = (
-  { __typename?: 'Mutation' }
-  & { acceptInvitationToOrganization: Types.Maybe<(
-    { __typename?: 'AcceptInvitationToOrganizationPayload' }
-    & Pick<Types.AcceptInvitationToOrganizationPayload, 'clientMutationId'>
-  )> }
-);
+export type AcceptOrganizationInviteMutation = { __typename?: 'Mutation', acceptInvitationToOrganization: Types.Maybe<{ __typename?: 'AcceptInvitationToOrganizationPayload', clientMutationId: Types.Maybe<string> }> };
 
 
 export const AcceptOrganizationInviteDocument = gql`

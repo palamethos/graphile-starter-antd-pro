@@ -9,16 +9,7 @@ export type UpdateOrganizationMutationVariables = Types.Exact<{
 }>;
 
 
-export type UpdateOrganizationMutation = (
-  { __typename?: 'Mutation' }
-  & { updateOrganization: Types.Maybe<(
-    { __typename?: 'UpdateOrganizationPayload' }
-    & { organization: Types.Maybe<(
-      { __typename?: 'Organization' }
-      & Pick<Types.Organization, 'id' | 'slug' | 'name'>
-    )> }
-  )> }
-);
+export type UpdateOrganizationMutation = { __typename?: 'Mutation', updateOrganization: Types.Maybe<{ __typename?: 'UpdateOrganizationPayload', organization: Types.Maybe<{ __typename?: 'Organization', id: any, slug: string, name: string }> }> };
 
 
 export const UpdateOrganizationDocument = gql`

@@ -7,17 +7,7 @@ const defaultOptions =  {}
 export type CurrentUserAuthenticationsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type CurrentUserAuthenticationsQuery = (
-  { __typename?: 'Query' }
-  & { currentUser: Types.Maybe<(
-    { __typename?: 'User' }
-    & Pick<Types.User, 'id'>
-    & { authentications: Array<(
-      { __typename?: 'UserAuthentication' }
-      & Pick<Types.UserAuthentication, 'id' | 'service' | 'identifier' | 'createdAt'>
-    )> }
-  )> }
-);
+export type CurrentUserAuthenticationsQuery = { __typename?: 'Query', currentUser: Types.Maybe<{ __typename?: 'User', id: any, authentications: Array<{ __typename?: 'UserAuthentication', id: any, service: string, identifier: string, createdAt: string }> }> };
 
 
 export const CurrentUserAuthenticationsDocument = gql`
