@@ -29,6 +29,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
 
+    "useUnknownInCatchVariables": false,
+
     "noEmit": true,
     "declaration": true,
     "declarationMap": true,
