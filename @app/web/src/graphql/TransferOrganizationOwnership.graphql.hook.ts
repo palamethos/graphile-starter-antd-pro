@@ -10,7 +10,7 @@ export type TransferOrganizationOwnershipMutationVariables = Types.Exact<{
 }>;
 
 
-export type TransferOrganizationOwnershipMutation = { __typename?: 'Mutation', transferOrganizationOwnership: Types.Maybe<{ __typename?: 'TransferOrganizationOwnershipPayload', organization: Types.Maybe<{ __typename?: 'Organization', id: any, currentUserIsOwner: Types.Maybe<boolean> }> }> };
+export type TransferOrganizationOwnershipMutation = { __typename?: 'Mutation', transferOrganizationOwnership: { __typename?: 'TransferOrganizationOwnershipPayload', organization: { __typename?: 'Organization', id: any, currentUserIsOwner: boolean | null } | null } | null };
 
 
 export const TransferOrganizationOwnershipDocument = gql`

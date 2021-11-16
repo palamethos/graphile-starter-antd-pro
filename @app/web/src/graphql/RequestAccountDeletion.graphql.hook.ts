@@ -7,7 +7,7 @@ const defaultOptions =  {}
 export type RequestAccountDeletionMutationVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type RequestAccountDeletionMutation = { __typename?: 'Mutation', requestAccountDeletion: Types.Maybe<{ __typename?: 'RequestAccountDeletionPayload', success: Types.Maybe<boolean> }> };
+export type RequestAccountDeletionMutation = { __typename?: 'Mutation', requestAccountDeletion: { __typename?: 'RequestAccountDeletionPayload', success: boolean | null } | null };
 
 
 export const RequestAccountDeletionDocument = gql`

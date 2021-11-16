@@ -5,9 +5,9 @@ import { gql } from '@apollo/client';
 import { OrganizationPage_OrganizationFragmentDoc, OrganizationPage_QueryFragmentDoc } from './OrganizationPage_Query.graphql.hook';
 import * as Apollo from '@apollo/client';
 const defaultOptions =  {}
-export type OrganizationMembers_MembershipFragment = { __typename?: 'OrganizationMembership', id: any, createdAt: string, isOwner: boolean, isBillingContact: boolean, user: Types.Maybe<{ __typename?: 'User', id: any, username: string, name: string }> };
+export type OrganizationMembers_MembershipFragment = { __typename?: 'OrganizationMembership', id: any, createdAt: string, isOwner: boolean, isBillingContact: boolean, user: { __typename?: 'User', id: any, username: string, name: string } | null };
 
-export type OrganizationMembers_OrganizationFragment = { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: Types.Maybe<boolean>, currentUserIsBillingContact: Types.Maybe<boolean>, organizationMembershipsConnection: { __typename?: 'OrganizationMembershipsConnection', totalCount: number, nodes: Array<{ __typename?: 'OrganizationMembership', id: any, createdAt: string, isOwner: boolean, isBillingContact: boolean, user: Types.Maybe<{ __typename?: 'User', id: any, username: string, name: string }> }> } };
+export type OrganizationMembers_OrganizationFragment = { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: boolean | null, currentUserIsBillingContact: boolean | null, organizationMembershipsConnection: { __typename?: 'OrganizationMembershipsConnection', totalCount: number, nodes: Array<{ __typename?: 'OrganizationMembership', id: any, createdAt: string, isOwner: boolean, isBillingContact: boolean, user: { __typename?: 'User', id: any, username: string, name: string } | null }> } };
 
 export type OrganizationMembersQueryVariables = Types.Exact<{
   slug: Types.Scalars['String'];
@@ -15,7 +15,7 @@ export type OrganizationMembersQueryVariables = Types.Exact<{
 }>;
 
 
-export type OrganizationMembersQuery = { __typename?: 'Query', organizationBySlug: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: Types.Maybe<boolean>, currentUserIsBillingContact: Types.Maybe<boolean>, organizationMembershipsConnection: { __typename?: 'OrganizationMembershipsConnection', totalCount: number, nodes: Array<{ __typename?: 'OrganizationMembership', id: any, createdAt: string, isOwner: boolean, isBillingContact: boolean, user: Types.Maybe<{ __typename?: 'User', id: any, username: string, name: string }> }> } }> };
+export type OrganizationMembersQuery = { __typename?: 'Query', organizationBySlug: { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: boolean | null, currentUserIsBillingContact: boolean | null, organizationMembershipsConnection: { __typename?: 'OrganizationMembershipsConnection', totalCount: number, nodes: Array<{ __typename?: 'OrganizationMembership', id: any, createdAt: string, isOwner: boolean, isBillingContact: boolean, user: { __typename?: 'User', id: any, username: string, name: string } | null }> } } | null };
 
 export const OrganizationMembers_MembershipFragmentDoc = gql`
     fragment OrganizationMembers_Membership on OrganizationMembership {

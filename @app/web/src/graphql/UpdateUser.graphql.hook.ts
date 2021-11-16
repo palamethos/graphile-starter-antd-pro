@@ -10,7 +10,7 @@ export type UpdateUserMutationVariables = Types.Exact<{
 }>;
 
 
-export type UpdateUserMutation = { __typename?: 'Mutation', updateUser: Types.Maybe<{ __typename?: 'UpdateUserPayload', clientMutationId: Types.Maybe<string>, user: Types.Maybe<{ __typename?: 'User', id: any, name: string, username: string, surname: Types.Maybe<string> }> }> };
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'UpdateUserPayload', clientMutationId: string | null, user: { __typename?: 'User', id: any, name: string, username: string, surname: string | null } | null } | null };
 
 
 export const UpdateUserDocument = gql`

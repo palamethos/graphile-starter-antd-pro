@@ -8,7 +8,7 @@ const defaultOptions =  {}
 export type SettingsEmailsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type SettingsEmailsQuery = { __typename?: 'Query', currentUser: Types.Maybe<{ __typename?: 'User', id: any, isVerified: boolean, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string }> } }> };
+export type SettingsEmailsQuery = { __typename?: 'Query', currentUser: { __typename?: 'User', id: any, isVerified: boolean, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string }> } } | null };
 
 
 export const SettingsEmailsDocument = gql`

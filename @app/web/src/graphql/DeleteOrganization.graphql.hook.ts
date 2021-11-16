@@ -9,7 +9,7 @@ export type DeleteOrganizationMutationVariables = Types.Exact<{
 }>;
 
 
-export type DeleteOrganizationMutation = { __typename?: 'Mutation', deleteOrganization: Types.Maybe<{ __typename?: 'DeleteOrganizationPayload', clientMutationId: Types.Maybe<string> }> };
+export type DeleteOrganizationMutation = { __typename?: 'Mutation', deleteOrganization: { __typename?: 'DeleteOrganizationPayload', clientMutationId: string | null } | null };
 
 
 export const DeleteOrganizationDocument = gql`

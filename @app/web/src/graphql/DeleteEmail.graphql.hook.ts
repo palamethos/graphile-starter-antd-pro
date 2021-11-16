@@ -10,7 +10,7 @@ export type DeleteEmailMutationVariables = Types.Exact<{
 }>;
 
 
-export type DeleteEmailMutation = { __typename?: 'Mutation', deleteUserEmail: Types.Maybe<{ __typename?: 'DeleteUserEmailPayload', user: Types.Maybe<{ __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string }> } }> }> };
+export type DeleteEmailMutation = { __typename?: 'Mutation', deleteUserEmail: { __typename?: 'DeleteUserEmailPayload', user: { __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string }> } } | null } | null };
 
 
 export const DeleteEmailDocument = gql`

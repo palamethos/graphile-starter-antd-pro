@@ -10,7 +10,7 @@ export type VerifyEmailMutationVariables = Types.Exact<{
 }>;
 
 
-export type VerifyEmailMutation = { __typename?: 'Mutation', verifyEmail: Types.Maybe<{ __typename?: 'VerifyEmailPayload', success: Types.Maybe<boolean>, query: Types.Maybe<{ __typename?: 'Query', currentUser: Types.Maybe<{ __typename?: 'User', id: any, isVerified: boolean }> }> }> };
+export type VerifyEmailMutation = { __typename?: 'Mutation', verifyEmail: { __typename?: 'VerifyEmailPayload', success: boolean | null, query: { __typename?: 'Query', currentUser: { __typename?: 'User', id: any, isVerified: boolean } | null } | null } | null };
 
 
 export const VerifyEmailDocument = gql`

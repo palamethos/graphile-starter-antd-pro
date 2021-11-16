@@ -122,6 +122,7 @@ const Login: React.FC = () => {
               render: (_, dom) => dom.pop(),
               submitButtonProps: {
                 loading: submitting,
+                htmlType: 'submit',
                 size: 'large',
                 style: {
                   width: '100%',

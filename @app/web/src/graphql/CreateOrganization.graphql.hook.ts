@@ -12,7 +12,7 @@ export type CreateOrganizationMutationVariables = Types.Exact<{
 }>;
 
 
-export type CreateOrganizationMutation = { __typename?: 'Mutation', createOrganization: Types.Maybe<{ __typename?: 'CreateOrganizationPayload', organization: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }>, query: Types.Maybe<{ __typename?: 'Query', organizationBySlug: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string }> }> }> };
+export type CreateOrganizationMutation = { __typename?: 'Mutation', createOrganization: { __typename?: 'CreateOrganizationPayload', organization: { __typename?: 'Organization', id: any, name: string, slug: string } | null, query: { __typename?: 'Query', organizationBySlug: { __typename?: 'Organization', id: any, name: string, slug: string } | null } | null } | null };
 
 export const CreatedOrganizationFragmentDoc = gql`
     fragment CreatedOrganization on Organization {

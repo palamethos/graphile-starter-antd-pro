@@ -65,5 +65,13 @@ export default defineConfig({
   // mfsu: {},
   // Fast Refresh hot update
   fastRefresh: {},
+  lessLoader: {
+    // golbalVars: {
+    //'root-entry-name':'default'
+    //}
+    modifyVars: {
+      'root-entry-name': 'default'
+    }
+  },
   // chainWebpack: webpackPlugin,
 });

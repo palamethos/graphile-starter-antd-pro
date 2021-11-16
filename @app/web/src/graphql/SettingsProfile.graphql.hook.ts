@@ -8,7 +8,7 @@ const defaultOptions =  {}
 export type SettingsProfileQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type SettingsProfileQuery = { __typename?: 'Query', currentUser: Types.Maybe<{ __typename?: 'User', id: any, name: string, username: string, avatarUrl: Types.Maybe<string> }> };
+export type SettingsProfileQuery = { __typename?: 'Query', currentUser: { __typename?: 'User', id: any, name: string, username: string, avatarUrl: string | null } | null };
 
 
 export const SettingsProfileDocument = gql`

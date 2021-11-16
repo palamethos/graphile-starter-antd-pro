@@ -2,9 +2,9 @@
 import * as Types from '../../../graphql/index';
 
 import { gql } from '@apollo/client';
-export type OrganizationPage_OrganizationFragment = { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: Types.Maybe<boolean>, currentUserIsBillingContact: Types.Maybe<boolean> };
+export type OrganizationPage_OrganizationFragment = { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: boolean | null, currentUserIsBillingContact: boolean | null };
 
-export type OrganizationPage_QueryFragment = { __typename?: 'Query', organizationBySlug: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: Types.Maybe<boolean>, currentUserIsBillingContact: Types.Maybe<boolean> }> };
+export type OrganizationPage_QueryFragment = { __typename?: 'Query', organizationBySlug: { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: boolean | null, currentUserIsBillingContact: boolean | null } | null };
 
 export const OrganizationPage_OrganizationFragmentDoc = gql`
     fragment OrganizationPage_Organization on Organization {

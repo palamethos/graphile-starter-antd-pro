@@ -9,7 +9,7 @@ export type ResendEmailVerificationMutationVariables = Types.Exact<{
 }>;
 
 
-export type ResendEmailVerificationMutation = { __typename?: 'Mutation', resendEmailVerificationCode: Types.Maybe<{ __typename?: 'ResendEmailVerificationCodePayload', success: Types.Maybe<boolean> }> };
+export type ResendEmailVerificationMutation = { __typename?: 'Mutation', resendEmailVerificationCode: { __typename?: 'ResendEmailVerificationCodePayload', success: boolean | null } | null };
 
 
 export const ResendEmailVerificationDocument = gql`

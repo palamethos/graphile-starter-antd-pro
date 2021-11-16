@@ -7,7 +7,7 @@ const defaultOptions =  {}
 export type SettingsPasswordQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type SettingsPasswordQuery = { __typename?: 'Query', currentUser: Types.Maybe<{ __typename?: 'User', id: any, hasPassword: Types.Maybe<boolean>, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string }> } }> };
+export type SettingsPasswordQuery = { __typename?: 'Query', currentUser: { __typename?: 'User', id: any, hasPassword: boolean | null, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string }> } } | null };
 
 
 export const SettingsPasswordDocument = gql`

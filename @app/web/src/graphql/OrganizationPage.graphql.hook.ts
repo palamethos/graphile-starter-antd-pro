@@ -10,7 +10,7 @@ export type OrganizationPageQueryVariables = Types.Exact<{
 }>;
 
 
-export type OrganizationPageQuery = { __typename?: 'Query', organizationBySlug: Types.Maybe<{ __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: Types.Maybe<boolean>, currentUserIsBillingContact: Types.Maybe<boolean> }> };
+export type OrganizationPageQuery = { __typename?: 'Query', organizationBySlug: { __typename?: 'Organization', id: any, name: string, slug: string, currentUserIsOwner: boolean | null, currentUserIsBillingContact: boolean | null } | null };
 
 
 export const OrganizationPageDocument = gql`

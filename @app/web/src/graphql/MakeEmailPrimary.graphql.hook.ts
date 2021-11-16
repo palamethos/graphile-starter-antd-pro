@@ -9,7 +9,7 @@ export type MakeEmailPrimaryMutationVariables = Types.Exact<{
 }>;
 
 
-export type MakeEmailPrimaryMutation = { __typename?: 'Mutation', makeEmailPrimary: Types.Maybe<{ __typename?: 'MakeEmailPrimaryPayload', user: Types.Maybe<{ __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, isPrimary: boolean }> } }> }> };
+export type MakeEmailPrimaryMutation = { __typename?: 'Mutation', makeEmailPrimary: { __typename?: 'MakeEmailPrimaryPayload', user: { __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, isPrimary: boolean }> } } | null } | null };
 
 
 export const MakeEmailPrimaryDocument = gql`

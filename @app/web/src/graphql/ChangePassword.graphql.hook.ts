@@ -10,7 +10,7 @@ export type ChangePasswordMutationVariables = Types.Exact<{
 }>;
 
 
-export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: Types.Maybe<{ __typename?: 'ChangePasswordPayload', success: Types.Maybe<boolean> }> };
+export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: { __typename?: 'ChangePasswordPayload', success: boolean | null } | null };
 
 
 export const ChangePasswordDocument = gql`

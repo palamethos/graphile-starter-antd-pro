@@ -9,7 +9,7 @@ export type ForgotPasswordMutationVariables = Types.Exact<{
 }>;
 
 
-export type ForgotPasswordMutation = { __typename?: 'Mutation', forgotPassword: Types.Maybe<{ __typename?: 'ForgotPasswordPayload', clientMutationId: Types.Maybe<string> }> };
+export type ForgotPasswordMutation = { __typename?: 'Mutation', forgotPassword: { __typename?: 'ForgotPasswordPayload', clientMutationId: string | null } | null };
 
 
 export const ForgotPasswordDocument = gql`

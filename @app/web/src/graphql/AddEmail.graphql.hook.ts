@@ -10,7 +10,7 @@ export type AddEmailMutationVariables = Types.Exact<{
 }>;
 
 
-export type AddEmailMutation = { __typename?: 'Mutation', createUserEmail: Types.Maybe<{ __typename?: 'CreateUserEmailPayload', user: Types.Maybe<{ __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string }> } }> }> };
+export type AddEmailMutation = { __typename?: 'Mutation', createUserEmail: { __typename?: 'CreateUserEmailPayload', user: { __typename?: 'User', id: any, userEmailsConnection: { __typename?: 'UserEmailsConnection', nodes: Array<{ __typename?: 'UserEmail', id: any, email: string, isVerified: boolean, isPrimary: boolean, createdAt: string }> } } | null } | null };
 
 
 export const AddEmailDocument = gql`
