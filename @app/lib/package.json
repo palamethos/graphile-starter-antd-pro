@@ -8,7 +8,7 @@
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=\"$NODE_OPTIONS -r @app/config/env\" jest"
   },
   "dependencies": {
-    "@apollo/client": "3.4.17",
+    "@apollo/client": "3.5.5",
     "graphql": "15.7.2",
     "graphql-ws": "5.5.5",
     "react": "17.0.2",
