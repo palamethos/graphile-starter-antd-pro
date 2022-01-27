@@ -16,7 +16,7 @@
     "@types/lodash": "4.14.178",
     "@types/mjml": "4.7.0",
     "@types/nodemailer": "6.4.4",
-    "aws-sdk": "2.1048.0",
+    "aws-sdk": "2.1060.0",
     "chalk": "4.1.2",
     "cross-env": "7.0.3",
     "dayjs": "1.10.7",
@@ -29,7 +29,7 @@
     "zapatos": "5.0.0"
   },
   "devDependencies": {
-    "jest": "27.4.5",
+    "jest": "27.4.7",
     "mkdirp": "1.0.4"
   }
 }

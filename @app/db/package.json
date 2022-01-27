@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/pg": "8.6.1",
     "graphile-worker": "0.12.2",
-    "jest": "27.4.5",
+    "jest": "27.4.7",
     "lodash": "4.17.21",
     "pg": "8.7.1",
     "zapatos": "5.0.0"
