@@ -11,3 +11,5 @@ dist
 .ethereal
 yarn-error.log
 lerna-debug.log
+
+\@app/**/*.graphql.hook.ts

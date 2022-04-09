@@ -19,6 +19,7 @@ export default defineConfig({
   // history: {
   //   type: 'browser', // 'hash'
   // },
+  access: {},
   layout: {
     // https://umijs.org/zh-CN/plugins/plugin-layout
     name: 'GS-ANTD-PRO',
@@ -65,13 +66,13 @@ export default defineConfig({
   // mfsu: {},
   // Fast Refresh hot update
   fastRefresh: {},
-  lessLoader: {
-    // golbalVars: {
-    //'root-entry-name':'default'
-    //}
-    modifyVars: {
-      'root-entry-name': 'default'
-    }
-  },
+  // lessLoader: {
+  //   // golbalVars: {
+  //   //'root-entry-name':'default'
+  //   //}
+  //   modifyVars: {
+  //     'root-entry-name': 'default'
+  //   }
+  // },
   // chainWebpack: webpackPlugin,
 });

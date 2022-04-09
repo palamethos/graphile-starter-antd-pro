@@ -13,23 +13,23 @@
   "dependencies": {
     "@app/config": "0.0.0",
     "@types/html-to-text": "6.0.0",
-    "@types/lodash": "4.14.178",
+    "@types/lodash": "4.14.181",
     "@types/mjml": "4.7.0",
     "@types/nodemailer": "6.4.4",
-    "aws-sdk": "2.1060.0",
+    "aws-sdk": "2.1111.0",
     "chalk": "4.1.2",
     "cross-env": "7.0.3",
-    "dayjs": "1.10.7",
+    "dayjs": "1.11.0",
     "graphile-worker": "0.12.2",
     "html-to-text": "7.1.1",
     "lodash": "4.17.21",
-    "mjml": "4.11.0",
-    "nodemailer": "6.7.2",
+    "mjml": "4.12.0",
+    "nodemailer": "6.7.3",
     "tslib": "2.3.1",
-    "zapatos": "5.0.0"
+    "zapatos": "5.0.2"
   },
   "devDependencies": {
-    "jest": "27.4.7",
+    "jest": "27.5.1",
     "mkdirp": "1.0.4"
   }
 }
