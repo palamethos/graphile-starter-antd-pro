@@ -16,7 +16,7 @@
     "@types/lodash": "4.14.182",
     "@types/mjml": "4.7.0",
     "@types/nodemailer": "6.4.4",
-    "aws-sdk": "2.1141.0",
+    "aws-sdk": "2.1142.0",
     "chalk": "4.1.2",
     "cross-env": "7.0.3",
     "dayjs": "1.11.2",
