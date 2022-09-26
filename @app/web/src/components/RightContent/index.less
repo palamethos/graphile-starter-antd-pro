@@ -1,4 +1,4 @@
-@import '~antd/es/style/themes/default.less';
+@import (reference) '~antd/es/style/themes/index';
 
 @pro-header-hover-bg: rgba(0, 0, 0, 0.025);
 
@@ -17,6 +17,15 @@
   height: 48px;
   margin-left: auto;
   overflow: hidden;
+
+  .name {
+    width: 40px;
+    height: 48px;
+    overflow: hidden;
+    line-height: 48px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .action {
     display: flex;
     align-items: center;
@@ -50,13 +59,24 @@
   }
 }
 
-.dark {
-  .action {
-    &:hover {
-      background: #252a3d;
+@media only screen and (max-width: @screen-md) {
+  :global(.ant-divider-vertical) {
+    vertical-align: unset;
+  }
+  .name {
+    display: none;
+  }
+  .right {
+    position: absolute;
+    top: 0;
+    right: 12px;
+    .account {
+      .avatar {
+        margin-right: 0;
+      }
     }
-    &:global(.opened) {
-      background: #252a3d;
+    .search {
+      display: none;
     }
   }
 }

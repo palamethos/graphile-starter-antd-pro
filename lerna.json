@@ -1,5 +1,7 @@
 {
   "packages": ["@app/*"],
   "version": "0.0.0",
-  "loglevel": "warn"
+  "loglevel": "warn",
+  "npmClient": "yarn",
+  "useWorkspaces": true
 }

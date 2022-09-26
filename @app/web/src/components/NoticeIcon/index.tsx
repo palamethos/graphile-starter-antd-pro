@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Tag, message } from 'antd';
+import { getNotices } from '@/services/ant-design-pro/api';
+import { useModel, useRequest } from '@umijs/max';
+import { message, Tag } from 'antd';
 import { groupBy } from 'lodash';
 import moment from 'moment';
-import { useModel } from 'umi';
-import { getNotices } from '@/services/ant-design-pro/api';
-
-import NoticeIcon from './NoticeIcon';
+import { useEffect, useState } from 'react';
 import styles from './index.less';
+import NoticeIcon from './NoticeIcon';
 
 export type GlobalHeaderRightProps = {
   fetchingNotices?: boolean;
@@ -70,14 +69,15 @@ const getUnreadData = (noticeData: Record<string, API.NoticeIconItem[]>) => {
   return unreadMsg;
 };
 
-const NoticeIconView = () => {
+const NoticeIconView: React.FC = () => {
   const { initialState } = useModel('@@initialState');
   const { currentUser } = initialState || {};
   const [notices, setNotices] = useState<API.NoticeIconItem[]>([]);
+  const { data } = useRequest(getNotices);
 
   useEffect(() => {
-    getNotices().then(({ data }) => setNotices(data || []));
-  }, []);
+    setNotices(data || []);
+  }, [data]);
 
   const noticeData = getNoticeData(notices);
   const unreadMsg = getUnreadData(noticeData || {});

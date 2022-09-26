@@ -25,7 +25,7 @@ const Settings: LayoutSettings & {
 } = {
   navTheme: 'light',
   // Dawn
-  primaryColor: '#1890ff',
+  colorPrimary: '#1890ff',
   layout: 'side',
   contentWidth: 'Fluid',
   fixedHeader: false,

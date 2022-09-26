@@ -31,17 +31,17 @@ const LoginMessage: React.FC<{
   />
 );
 
-/**
- * This method will jump to the location of the redirect parameter
- */
-const goto = () => {
-  if (!history) return;
-  setTimeout(() => {
-    const { query } = history.location;
-    const { redirect } = query as { redirect: string };
-    history.push(redirect || '/');
-  }, 10);
-};
+// /**
+//  * This method will jump to the location of the redirect parameter
+//  */
+// const goto = () => {
+//   if (!history) return;
+//   setTimeout(() => {
+//     const { query } = history.location;
+//     const { redirect } = query as { redirect: string };
+//     history.push(redirect || '/');
+//   }, 10);
+// };
 
 const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -77,7 +77,8 @@ const Login: React.FC = () => {
         message.success('login successful!');
         const fetchedUser = await fetchUserInfo();
         console.info('fetchedUser', fetchedUser);
-        goto();
+        const urlParams = new URL(window.location.href).searchParams;
+        history.push(urlParams.get('redirect') || '/');
         return;
       } else {
         console.error('loginResult.errors', loginResult.errors); // TODO: better error

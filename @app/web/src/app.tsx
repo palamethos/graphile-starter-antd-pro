@@ -19,6 +19,8 @@ import type {
   CurrentUserQueryVariables,
 } from '@/graphql/CurrentUser.graphql.hook';
 
+// ? TODO: check vs newer https://raw.githubusercontent.com/ant-design/ant-design-pro/c96a2f15d43141b4286dc0bdae7b65ec9373e8a0/src/app.tsx
+
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -32,13 +34,13 @@ export function rootContainer(container) {
   );
 }
 
-/**
- * When obtaining user information is slow, a loading is displayed
- */
-export const initialStateConfig = {
-  // loading: <PageLoading />,
-  loading: <CSSSpin />,
-};
+// /**
+//  * When obtaining user information is slow, a loading is displayed
+//  */
+// export const initialStateConfig = {
+//   // loading: <PageLoading />,
+//   loading: <CSSSpin />,
+// };
 
 /**
  * @see  https://umijs.org/plugins/plugin-initial-state
@@ -46,6 +48,7 @@ export const initialStateConfig = {
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
+  loading?: boolean;
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
